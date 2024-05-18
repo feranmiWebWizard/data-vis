@@ -1,13 +1,12 @@
 import { csv } from "d3";
+import data from "vega-datasets";
 
-const csvUrl =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-1uOFXqcMNj9BqK0Ue35u09XJO-hsWKeBI4f9e2S_-pVLgQjEjJGHstmPwLdzqPErYUm2IPE5wcJR/pub?gid=0&single=true&output=csv";
-
-export const getData = async () => {
+export const getData = async (link) => {
   try {
-    const csvData = await csv(csvUrl);
+    const csvData = await data[link]();
 
     console.log(csvData[0]);
+    return csvData;
   } catch (error) {
     console.log(error);
   }
